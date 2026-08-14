@@ -66,4 +66,4 @@ No installation or server setup is required.
 ###  Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/web-security-ctf.git
+git clone https://github.com/poojanprm/web-security-ctf.git
