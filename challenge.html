@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Portal</title>
+
+<style>
+body{
+    margin:0;
+    background:#101820;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.card{
+    width:600px;
+    background:#1b2735;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 25px rgba(0,0,0,.5);
+}
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    background:#0e1722;
+    color:white;
+    border:1px solid #555;
+}
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#2196F3;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+#msg{
+    margin-top:20px;
+}
+.flag{
+    color:#3cff5b;
+    font-size:22px;
+    font-weight:bold;
+}
+small{
+    color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Internal Portal</h2>
+
+<p>Authorized personnel only.</p>
+
+<input id="key" placeholder="Access Key">
+
+<button onclick="login()">Continue</button>
+
+<div id="msg"></div>
+
+<small>Portal Build v2.7.14</small>
+
+</div>
+
+<script>
+
+const routes={
+    a:"home",
+    b:"dashboard",
+    c:"portal",
+    d:"console",
+    e:atob("YXJjaGl2ZQ==")
+};
+
+const fakeFlags=[
+"FLAG{nice_try}",
+"FLAG{almost}",
+"FLAG{fake_admin}"
+];
+
+console.log("%cPortal initialized.","color:cyan");
+
+console.log("Nothing interesting here.");
+
+const params=new URLSearchParams(location.search);
+
+const page=params.get("page");
+
+const token=params.get("token");
+
+function hash(str){
+    let h=0;
+    for(let i=0;i<str.length;i++){
+        h=((h<<5)-h)+str.charCodeAt(i);
+        h|=0;
+    }
+    return Math.abs(h).toString(16);
+}
+
+function login(){
+
+    const input=document.getElementById("key").value.trim();
+
+    if(hash(input)==="4b3b7c6"){
+        localStorage.setItem("employee","verified");
+        document.getElementById("msg").innerHTML=
+        "<span style='color:lightgreen'>Access cached.</span>";
+    }else{
+        document.getElementById("msg").innerHTML=
+        "<span style='color:tomato'>Invalid key.</span>";
+    }
+}
+
+if(page==="admin"){
+    document.body.innerHTML=`
+    <div class="card">
+    <h2>Admin Panel</h2>
+    <p>Authentication Required.</p>
+    <div class="flag">${fakeFlags[2]}</div>
+    </div>`;
+}
+
+if(
+page===routes.e &&
+localStorage.getItem("employee")==="verified" &&
+token==="alpha-42"
+){
+document.body.innerHTML=`
+<div class="card">
+<h2>Archive</h2>
+<p>Access Granted.</p>
+<div class="flag">
+FLAG{browser_exploration_master}
+</div>
+</div>`;
+}
+
+const hidden=[
+"c291cmNl",
+"ZGVidWc=",
+"bG9jYWxTdG9yYWdl",
+"YXJjaGl2ZQ==",
+"YWxwaGEtNDI="
+];
+
+Object.freeze(hidden);
+
+window.portal={
+version:"2.7.14",
+status:"ok"
+};
+
+</script>
+
+</body>
+</html>
