@@ -413,8 +413,8 @@ It is intended as a learning-focused CTF rather than an advanced exploitation ch
 📌 Project Status
 Version 1.0 — Completed
 
-Future versions may introduce additional challenge stages and more advanced Web Security concepts.
+Future versions may introduce additional challenge stages and more advanced Web Security concepts
 
-Version 1.0 — Completed
 
-Future versions may introduce additional challenge stages and more advanced Web Security concepts.
+
+Future versions may introduce additional challenge stages and more advanced Web
